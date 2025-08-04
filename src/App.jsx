@@ -1,7 +1,7 @@
 // App.jsx
 import { useRef, useState } from "react";
 import MasonryLayout from "./MasonryLayout";
-import MasonryLayoutTry from "./MasonryLayoutTry";
+import MasonryLayoutTry from "./MasonryLayout";
 
 const debounce = (fun, delay) => {
   let timer;
@@ -17,7 +17,8 @@ export default function App() {
   const [trigger, setTrigger] = useState(true);
   
   const [scrollTop, setScrollTop] = useState(0);
-  const container = useRef(null);
+  const initial = useRef(null);
+  const container = useRef(false);
 
   const scrollAction = (e) => {
     const el = container.current;
@@ -26,10 +27,11 @@ export default function App() {
 
     const atBottom =
       el.scrollHeight - el.scrollTop <= el.clientHeight + 2; // +2 tolerance
-    if (atBottom) {
+    if (atBottom && initial.current) {
       console.log("Reached bottom!");
       setTrigger((prev) => !prev); // trigger API call 
     }
+    initial.current = true;
   };
 
   const debounceScroll = debounce(scrollAction, 200); // 200ms debounce
