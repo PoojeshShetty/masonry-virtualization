@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-
 const FIXED_WIDTH = 250;
 function MasonryLayout({ columnCount, gap = 16, triggerApiCall, scrollTop}) {
 
@@ -67,9 +66,7 @@ function MasonryLayout({ columnCount, gap = 16, triggerApiCall, scrollTop}) {
                 position: "relative",
                 width: columnCount * (FIXED_WIDTH + gap) - gap,
                 height: Math.max(...heights),
-                margin: "0 auto",
-                // transform: `translateY(${offsetY}px)`,
-                border: '1px solid red'
+                margin: "0 auto"
               }}
               ref={containerRef}
             >
@@ -88,7 +85,6 @@ function MasonryLayout({ columnCount, gap = 16, triggerApiCall, scrollTop}) {
                     </div>
                 ))}
             </div>
-            {/* <button onClick={loadMore}>Load More</button> */}
         </div>
     )
 }
